@@ -45,6 +45,12 @@ class MyApp extends StatelessWidget {
               color: Colors.white
             ),
           ),
+          displaySmall: GoogleFonts.karla(
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          )
         ),
       ),
       home: LogInPage(),

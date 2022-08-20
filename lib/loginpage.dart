@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tesco_19/Widgets/users.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tesco_19/homepage.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LogInPage extends StatefulWidget {
   LogInPage({Key? key}) : super(key: key);
@@ -228,19 +230,21 @@ class _LogInPageState extends State<LogInPage> {
                           final isValid = _formKey.currentState!.validate();
                           if (isValid) {
                             if (users.containsKey(_userName)) {
-                              print(users[_userName]);
                               if (users[_userName] == _password) {
-                                print('Log in');
+                                Navigator.of(context).push(
+                                  PageTransition(
+                                    child: const HomePage(),
+                                    type: PageTransitionType.leftToRight,
+                                  ),
+                                );
                               } else {
                                 Fluttertoast.showToast(
                                   msg: 'Your Password is Wrong.',
-                                  backgroundColor: Colors.black,
                                 );
                               }
                             } else {
                               Fluttertoast.showToast(
                                 msg: 'You are not a valid user.',
-                                backgroundColor: Colors.black,
                               );
                             }
                           }
@@ -261,7 +265,14 @@ class _LogInPageState extends State<LogInPage> {
                       width: width * 0.8,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            PageTransition(
+                              child: const HomePage(),
+                              type: PageTransitionType.leftToRight,
+                            ),
+                          );
+                        },
                         child: Text(
                           'Create an Account',
                           style: Theme.of(context).textTheme.labelMedium,
